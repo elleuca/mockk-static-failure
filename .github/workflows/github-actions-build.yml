@@ -19,4 +19,6 @@ jobs:
           java-version: ${{ matrix.jdk }}
           distribution: 'adopt'
       - name: Build with Gradle
-        run: ./gradlew --info build
+        run: |
+          ./gradlew -Pjvm_target=${{ matrix.jdk }} printProps
+          ./gradlew -Pjvm_target=${{ matrix.jdk }} --info build

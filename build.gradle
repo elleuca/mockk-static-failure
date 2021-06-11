@@ -19,12 +19,17 @@ test {
     useJUnitPlatform()
 }
 
-/*
+
 compileKotlin {
-    kotlinOptions.jvmTarget = '16'
+    kotlinOptions.jvmTarget = "$jvm_target"
 }
 
 compileTestKotlin {
-    kotlinOptions.jvmTarget = '16'
+    kotlinOptions.jvmTarget = "$jvm_target"
 }
-*/
+
+tasks.register('printProps') {
+    doLast {
+        println "kotlinOptions.jvmTarget: $jvm_target"
+    }
+}
