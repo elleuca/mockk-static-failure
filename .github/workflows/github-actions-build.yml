@@ -8,16 +8,14 @@ jobs:
 
     strategy:
       matrix:
-        jdk: [1.8, 11, 15, 16]
+        jdk: [11, 15, 16]
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 16
+      - name: Set up JDK ${{ matrix.jdk }}
         uses: actions/setup-java@v2
         with:
           java-version: ${{ matrix.jdk }}
           distribution: 'adopt'
       - name: Build with Gradle
-        run: |
-          ./gradlew build -x test
-          ./gradlew --info test
+        run: ./gradlew --info build
