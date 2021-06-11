@@ -35,4 +35,14 @@ class InstantTest {
         assertNotEquals(123L, Instant.now().toEpochMilli())
     }
 
+    @Test
+    fun mockInstantNow() {
+        mockkStatic(Instant::class)
+        every { Instant.now() } returns Instant.MAX
+
+        assertEquals(Instant.MAX, Instant.now())
+
+        unmockkStatic(Instant::class)
+    }
+
 }
